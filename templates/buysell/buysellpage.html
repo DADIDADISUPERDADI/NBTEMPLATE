@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+
+{%block kw%}{{buysell.nbone}} {{buysell.title}} {%endblock%}
+{%block desc%}{{buysell.description|truncatechars:140}}{%endblock%}
+{%block twcard%}<meta name="twitter:card" content="summary_large_image" />{%endblock%}
+{%block twtitle%}<meta name="twitter:title" content="{{buysell.title|slice:60}}" /> {%endblock%}
+{%block twdesc%}<meta name="twitter:description" content="{{buysell.description|slice:120}}" />{%endblock%}
+{%block ogsitename%}<meta property="og:site_name" content="爸爸牛B网">{%endblock%}
+{%block ogtitle%}<meta property="og:title" content="{{buysell.title|slice:60}}">{%endblock%}
+{%block og:description%}<meta property="og:description" content="{{buysell.description|slice:120}}">{%endblock%}
+{%block og:url%}<meta property="og:url" content="{{request.path}}">{%endblock%}
+{%block og:type%}<meta property="og:type" content="article">{%endblock%}
+
+{%block twogimg%}
+    {%if buysell.photo_main%}
+        <meta name="twitter:image" content="{{buysell.photo_main.url}}" />
+        <meta property="og:image" content="{{buysell.photo_main.url}}">
+    {%elif buysell.photo_1%}
+        <meta name="twitter:image" content="{{buysell.photo_1.url}}" />
+        <meta property="og:image" content="{{buysell.photo_1.url}}">
+    {%elif buysell.photo_2%}
+        <meta name="twitter:image" content="{{buysell.photo_2.url}}" />
+        <meta property="og:image" content="{{buysell.photo_2.url}}">
+    {%elif buysell.photo_3%}
+        <meta name="twitter:image" content="{{buysell.photo_3.url}}" />
+        <meta property="og:image" content="{{buysell.photo_3.url}}">
+    {%elif buysell.photo_4%}
+        <meta name="twitter:image" content="{{buysell.photo_4.url}}" />
+        <meta property="og:image" content="{{buysell.photo_4.url}}">
+    {%else%}
+    {%endif%}
+{%endblock%}
+
+
+
+{%block title%}{{buysell.title}}{%endblock%}
+
+{%block content%}
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if buysell.nbone|stringformat:"s" == "办公室商业店铺" %}
+            <a class="fatie" href="{%url 'bangongshishangyedianpu'%}">返回买卖预览</a>
+        {%elif buysell.nbone|stringformat:"s" == "皇后区买房卖房"%}
+            <a class="fatie" href="{%url 'huanghouqumaifangmaifang'%}">返回买卖预览</a> 
+        {%elif buysell.nbone|stringformat:"s" == "其他区买房卖房"%}
+            <a class="fatie" href="{%url 'qitaqumaifangmaifang'%}">返回买卖预览</a>  
+        {%elif buysell.nbone|stringformat:"s" == "买车卖车二手车"%}
+            <a class="fatie" href="{%url 'maichemaicheershouche'%}">返回买卖预览</a> 
+        {%elif buysell.nbone|stringformat:"s" == "各类二手交易"%}
+            <a class="fatie" href="{%url 'geleiershoujiaoyi'%}">返回买卖预览</a> 
+        {%else%}
+            <a class="fatie" href="{%url 'buysell'%}">返回买卖预览</a>        
+        {%endif%}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+       主题：{{buysell.title}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        联系电话：{{buysell.phone}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        价格：${{buysell.price}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if buysell.is_future%}
+            发表时间：置顶 N/A
+        {%else%}
+            发表时间：{{buysell.list_date}}
+        {%endif%}
+    </div>
+</div>
+
+<!-- <div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        发布者：{{buysell.poster}}
+    </div>
+</div> -->
+
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        交易类型：{{buysell.nbone}}
+    </div>
+</div>
+
+<div class="rentpage-gridtitle" style="min-height: 200px;">
+    <div class="rentpage-gridtitle-item">
+        描述：{{buysell.description}}
+    </div>
+</div>
+
+<div class="rentpage-gridtitle">
+    <div>
+        {%if buysell.photo_main%}
+            <img class="rentpage-gridimage-item" src="{{buysell.photo_main.url}}" alt="主要图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if buysell.photo_1%}
+            <img class="rentpage-gridimage-item" src="{{buysell.photo_1.url}}" alt="一号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if buysell.photo_2%}
+            <img class="rentpage-gridimage-item" src="{{buysell.photo_2.url}}" alt="二号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if buysell.photo_3%}
+            <img class="rentpage-gridimage-item" src="{{buysell.photo_3.url}}" alt="三号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if buysell.photo_4%}
+            <img class="rentpage-gridimage-item" src="{{buysell.photo_4.url}}" alt="四号图片">
+        {%endif%}
+    </div>
+</div>
+{%endblock%}
+
+

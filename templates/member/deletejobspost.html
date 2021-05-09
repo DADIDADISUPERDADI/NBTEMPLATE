@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%}确认删除{%endblock%}
+
+{%block content%}
+
+{%if user.is_authenticated %}
+    {% if user.id == jobs.poster.id %}
+        <form action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <strong><h1 style="text-align: center; margin-top:200px;" >确定要删除这个帖子吗?</h1></strong>
+            <br>    
+            <button style="margin-bottom:20px;" class="btn btn-dark btn-lg btn-block">删除帖子</button>
+        </form>
+        <a href="{%url 'dashboard2'%}"><button style="margin-bottom:100px;" class="btn btn-dark btn-lg btn-block">不! 带我回去</button></a>
+    {%else%}
+        <h1 style="text-align: center; margin-top:200px;">请勿删除其他人的帖子，谢谢</h1>
+    {%endif%}
+{%else%}
+    <meta http-equiv="REFRESH" content="0;url={%url 'register'%}">
+{%endif%}
+
+{%endblock%}

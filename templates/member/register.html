@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{%block title%}华人牛B网注册{%endblock%}
+
+{%block content%}
+    <section id="register" class="bg-light py-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                <h4>注册</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{%url 'register'%}" method="POST">
+                        {%csrf_token%}
+                    <div class="form-group">
+                        {%include 'partials/_alerts.html'%}
+                    <label for="first_name">名字</label>
+                    <input type="text" pattern=".{1,20}" required title="请输入名字在1个字符-20字符之间" name="first_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="last_name">姓氏</label>
+                    <input type="text" pattern=".{1,20}" required title="请输入姓氏在1个字符-20字符之间" name="last_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" pattern=".{2,20}" required title="请输入用户名在2个字符-20字符之间" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="email">Email/邮箱</label>
+                    <input type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required title="请输入有效的电子邮箱" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" pattern=".{6,20}" required title="请输入密码在6个字符-20字符之间" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="password2">确认密码</label>
+                    <input type="password" name="password2" class="form-control" required>
+                    </div>
+                    <div class="form-group" style=margin-top:2px;>
+                        {%include 'partials/_captcha.html'%} 
+                    </div>
+                    <div class="d-grid gap-2" style=margin-top:2px;>
+                        <input type="submit" value="注册" class="btn btn-dark btn-block">
+                    </div>
+
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+
+{%endblock%}

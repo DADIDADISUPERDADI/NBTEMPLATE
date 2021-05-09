@@ -1,0 +1,109 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load humanize%}
+{% load tz %}
+
+{%block kw%}{{nbtitle}}租房 {{nbtitle}}出租 {{nbtitle}}找房子 {{nbtitle}}房屋出租 {{nbtitle}}租屋 {{nbtitle}}租房网 {{nbtitle}}找房网 {{nbtitle}} 纽约租房 纽约出租 nyc rent {{nbtitle}}分租 {{nbtitle}}合租 {%endblock%}
+{%block desc%}{{nbtitle}}租房 {{nbtitle}}出租 {{nbtitle}}找房子 {{nbtitle}}房屋出租 {{nbtitle}}租屋 {{nbtitle}}租房網 {{nbtitle}}找房網 {{nbtitle}} 纽约租房 纽约出租 nyc rent {{nbtitle}}分租 {{nbtitle}}合租 {%endblock%}
+
+
+
+
+{%block title%}{{nbtitle}}租房{%endblock%}
+
+{%block content%}
+        <div class="rent-field-grid">
+            {%if user.is_authenticated%}
+                <div class= "flex"><h4><a class='fatie' href="{%url 'addpost'%}">发布广告</a></h4></div>
+            {%else%}
+            <div class= "flex"><h4><a class='fatie' href="{%url 'login'%}">发布广告</a></h4></div>
+            {%endif%}
+            <div class= "flex"><h4>{{nbtitle}}出租</h4></div>
+            <div class= "flex"><h4>价格</h4></div>       
+            <div class= "flex"><h4>电话</h4></div>
+            <div class= "flex"><h4>时间</h4></div>
+        </div>
+
+        <!-- 'rentpage' rent.id -->
+        {%if rent%}
+            {% for r in rent %}
+            <div class="rent-grid1" style="height: 82px;">
+                <div class="rent-item"><a href="{% url 'rentpage' r.nbmain r.slug r.id %}">
+                    {%if r.photo_main%}              
+                        <img class="imgicon" src="{{r.photo_main.url}}" alt="纽约租房"></a>
+                    {%elif r.photo_1%}
+                        <img class="imgicon" src="{{r.photo_1.url}}" alt="纽约租房"></a>
+                    {%elif r.photo_2%}
+                        <img class="imgicon" src="{{r.photo_2.url}}" alt="纽约租房"></a>
+                    {%elif r.photo_3%}
+                        <img class="imgicon" src="{{r.photo_3.url}}" alt="纽约租房"></a>
+                    {%elif r.photo_4%}
+                        <img class="imgicon" src="{{r.photo_4.url}}" alt="纽约租房"></a>
+                    {%else%}
+                        <img class="imgicon" src="{%static 'img/noimg.png'%}" alt="纽约租房"></a>                       
+                    {%endif%}
+                </div>
+                <div class="rent-item"><a href="{% url 'rentpage' r.nbmain r.slug r.id %}">{{r.title}}</a></div>
+                <div class="rent-item">${{r.price | intcomma}}</div>      
+                <div class="rent-item">{{r.phone}}</div>
+                <div class="rent-item">
+                    {%if r.is_future%}
+                        置顶
+                    {%else%}
+                        {{r.list_date | timesince}}
+                    {%endif%}
+                </div>
+            </div>
+            {%endfor%}
+        {%else%}
+            <div>
+                <h1 class=flex style="margin-top: 200px;">此页面暂时忙碌....请稍后再来....</h1>
+            </div>
+            
+        {%endif%}
+        
+
+        <!-- pagination -->
+        <div class="row">
+          <div class="col-md-12">
+              {%if rent.has_other_pages %}
+                  <ul class="pagination">
+                      {%if rent.has_previous%}
+                          <li class="page-item">
+                              <a href="?page={{rent.previous_page_number}}" class="page-link">&laquo;</a>
+                          </li>
+                      {%else%}
+                          <li class="page-item disabled">
+                              <a class="page-link">&laquo;</a>
+                          </li>
+                      {%endif%}
+
+                      {%for i in rent.paginator.page_range%}
+                          {%if rent.number == i%}
+                              <li class="page-item active">
+                                  <a class="page-link">{{i}}</a>
+                              </li>
+                          {%else%}
+                              <li class="page-item">
+                                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                              </li>
+                          {%endif%}
+                      {%endfor%}
+
+                      {%if rent.has_next%}
+                          <li class="page-item">
+                              <a href="?page={{rent.next_page_number}}" class="page-link">&raquo;</a>
+                          </li>
+                      {%else%}
+                          <li class="page-item disabled">
+                              <a class="page-link">&raquo;</a>
+                          </li>
+                      {%endif%}                     
+                  </ul>
+              {%endif%}
+          </div>
+      </div>
+
+{%endblock%}
+
+

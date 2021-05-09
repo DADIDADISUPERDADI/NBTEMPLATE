@@ -1,0 +1,55 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{%static 'img/favicon.ico'%}" type="image/x-icon">
+    <meta name="keywords" content="{%block kw%}{%endblock%}">
+    <meta name="description" content="{%block desc%}{%endblock%}">
+    {%block twcard%}{%endblock%}
+    {%block twtitle%}{%endblock%}
+    {%block twdesc%}{%endblock%}
+    {%block twogimg%}{%endblock%}
+    {%block ogsitename%}{%endblock%}
+    {%block ogtitle%}{%endblock%}
+    {%block og:description%}{%endblock%}
+    {%block og:url%}{%endblock%}
+    {%block og:type%}{%endblock%}
+    <!-- base tag and link rel canonical -->
+
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="{%static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{%static 'css/overwritebs.css'%}">
+    <link rel="stylesheet" href="{%static 'css/main.css'%}">
+    <link rel="stylesheet" href="{%static 'css/rent.css'%}">
+    <link rel="stylesheet" href="{%static 'css/jobs.css'%}">
+    <link rel="stylesheet" href="{%static 'css/rentpage.css'%}">
+    <link rel="stylesheet" href="{%static 'css/dash.css'%}">
+    <link rel="stylesheet" href="{%static 'css/ggs.css'%}">
+
+    <!-- <base target="_blank" rel="noopener noreferrer"> -->
+</head>
+    <body>
+        <div id="maindiv" class="container">  
+            <div>
+                <!-- topbar -->
+                {%include 'partials/_topbar.html'%}
+            </div>
+            <div>
+                <!-- main content -->
+                {%block content%}{%endblock%}
+            </div>
+        </div>
+        <footer id="footer">
+            <a href="{% url 'lianxiwomen' %}" class="footer-item">联系我们</a>
+            <a href="{% url 'termsofconditions' %}" class="footer-item">网站条款</a>
+            <a href="{% url 'privacypolicy' %}" class="footer-item">用户隐私</a>
+            <div class="footer-item" style="cursor: default;">Copyright &copy;<span class="copyrightyear"></span> 爸爸牛B网 All Rights Reserved</div>
+        </footer>
+        <script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+        <script src="{%static 'js/main.js'%}"></script>
+        <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+    </body>
+</html>

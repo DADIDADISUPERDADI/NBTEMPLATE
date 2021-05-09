@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block title%}爸爸NB网{%endblock%}
+
+{%block content%}
+    {%if exception%}
+        <h1 class="flex" style="margin-top: 200px;">{{exception}}</h1>
+        <h4 class="flex">如果帖子尚未发布，请耐心等待审核</h4>
+    {%else%}
+        <h1 class="flex" style="margin-top: 200px;">出错了！请稍后再来！</h1>
+    {%endif%}
+{%endblock%}

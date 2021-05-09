@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block title%}华人牛B网{%endblock%}
+
+{%block content%}
+<div style="margin-top: 80px;">
+    {%if form%}
+        <h2>Password Reset/重置密码</h2>
+        <ul>
+            <li>Password can not be fully numeric/密码请不要纯数字</li>
+            <li>Password must contain at least 8 characters/密码至少8位数</li>
+        </ul> 
+            <form action="" method="post">
+                {%csrf_token%}
+                {{form.as_p}}     
+                <button class="btn btn-dark">重置密码</button>
+            </form>
+    {%else%}
+            <h1 class="flex">您已重置新的密码或此链接已失效</h1>
+    {%endif%}   
+</div>
+{%endblock%}

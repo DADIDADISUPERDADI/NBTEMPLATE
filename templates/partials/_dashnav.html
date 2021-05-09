@@ -1,0 +1,33 @@
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item" style="font-weight:bolder; color:black">
+      <a 
+        {%if 'dashboard2' in request.path%}
+          class="nav-link"
+        {%elif 'dashboard1' in request.path%}
+          class="nav-link"
+        {%else%} 
+          class="nav-link active"
+        {%endif%}
+        href="{%url 'dashboard'%}">租房广告</a>
+    </li>
+    <li class="nav-item" style="font-weight:bolder; color:black">
+      <a 
+        {%if 'dashboard1' in request.path%}
+          class="nav-link active"
+        {%else%}
+          class="nav-link"
+        {%endif%} 
+          href="{%url 'dashboard1'%}">交易广告</a>
+        
+    </li>
+    <li class="nav-item" style="font-weight:bolder; color:black">
+      <a 
+        {%if 'dashboard2' in request.path%}
+          class="nav-link active"
+        {%else%}
+          class="nav-link"
+        {%endif%}  
+          href="{%url 'dashboard2'%}">工作帖子</a>
+          
+    </li>
+</ul>

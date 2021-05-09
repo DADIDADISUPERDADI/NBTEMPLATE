@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+{%block title%}华人牛B网 | 工作广告{%endblock%}
+
+{%block content%}
+{%if user.is_authenticated%}
+    <!-- NAV -->
+        {%include 'partials/_dashnav.html'%}
+     <!-- endNAV -->
+
+
+    <div class="dash-field-grid">
+          <div class= "flex"><h4><a class='fatie' href="{%url 'index'%}">返回首页</a></h4></div>
+          <div class= "flex"><h4>已发布的工作广告</h4></div>
+          <div class= "flex"><h4>选择删帖</h4></div>       
+          <div class= "flex"><h4>时间</h4></div>
+    </div>
+
+
+    {%if user_post%}
+        {%for up in user_post%}
+            <div class="dash-grid1" style="height:26px;">
+                <div class="dash-item">{{up.id}}</div>
+                <div class="dash-item"><a href="{% url 'jobspage' up.nbtwo up.slug up.id %}"> {{up.title}}</a></div>     
+                <div class="dash-item"><a href="{%url 'deletejobspost' up.id%}">删帖</a></div>
+                <div class="dash-item">{%if up.is_future%}置顶{%else%}{{up.list_date}}{%endif%}</div>
+            </div>
+        {%endfor%}
+
+        <!-- Paginator -->
+        <div class="row">
+            <div class="col-md-12">
+                {%if user_post.has_other_pages %}
+                    <ul class="pagination">
+                        {%if user_post.has_previous%}
+                            <li class="page-item">
+                                <a href="?page={{user_post.previous_page_number}}" class="page-link">&laquo;</a>
+                            </li>
+                        {%else%}
+                            <li class="page-item disabled">
+                                <a class="page-link">&laquo;</a>
+                            </li>
+                        {%endif%}
+  
+                        {%for i in user_post.paginator.page_range%}
+                            {%if user_post.number == i%}
+                                <li class="page-item active">
+                                    <a class="page-link">{{i}}</a>
+                                </li>
+                            {%else%}
+                                <li class="page-item">
+                                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                                </li>
+                            {%endif%}
+                        {%endfor%}
+  
+                        {%if user_post.has_next%}
+                            <li class="page-item">
+                                <a href="?page={{user_post.next_page_number}}" class="page-link">&raquo;</a>
+                            </li>
+                        {%else%}
+                            <li class="page-item disabled">
+                                <a class="page-link">&raquo;</a>
+                            </li>
+                        {%endif%}                     
+                    </ul>
+                {%endif%}
+            </div>
+        </div>   
+        <!-- endPaginator -->
+
+    {%else%}
+        <div>
+            <h1 class=flex style="margin-top: 200px;">找不到任何可以管理的帖子</h1>
+        </div>
+    {%endif%}    
+                       
+{%else%}
+
+    <meta http-equiv="REFRESH" content="0;url={%url 'register'%}">
+
+{%endif%}
+
+
+{%endblock%}

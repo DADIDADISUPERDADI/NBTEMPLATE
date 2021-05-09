@@ -1,0 +1,103 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load humanize%}
+
+{%block title%}{{nbtitle}}{%endblock%}
+
+{%block content%}
+
+        <div class="rent-field-grid">
+            {%if user.is_authenticated%}
+                <div class= "flex"><h4><a class='fatie' href="{%url 'addbuysellpost'%}">发布广告</a></h4></div>
+            {%else%}
+            <div class= "flex"><h4><a class='fatie' href="{%url 'login'%}">发布广告</a></h4></div>
+            {%endif%}
+            <div class= "flex"><h4>{{nbtitle}}</h4></div>
+            <div class= "flex"><h4>价格</h4></div>       
+            <div class= "flex"><h4>电话</h4></div>
+            <div class= "flex"><h4>时间</h4></div>
+        </div>
+
+        <!-- 'rentpage' rent.id -->
+        {%if buysell%}
+            {% for b in buysell %}
+            <div class="rent-grid1" style="height: 82px;">
+                <div class="rent-item"><a href="{% url 'buysellpage' b.nbone b.slug b.id %}">
+                    {%if b.photo_main%}              
+                        <img class="imgicon" src="{{b.photo_main.url}}" alt="纽约租房"></a>
+                    {%elif b.photo_1%}
+                        <img class="imgicon" src="{{b.photo_1.url}}" alt="纽约租房"></a>
+                    {%elif b.photo_2%}
+                        <img class="imgicon" src="{{b.photo_2.url}}" alt="纽约租房"></a>
+                    {%elif b.photo_3%}
+                        <img class="imgicon" src="{{b.photo_3.url}}" alt="纽约租房"></a>
+                    {%elif b.photo_4%}
+                        <img class="imgicon" src="{{b.photo_4.url}}" alt="纽约租房"></a>
+                    {%else%}
+                        <img class="imgicon" src="{%static 'img/noimg.png'%}" alt="纽约租房"></a>                       
+                    {%endif%}
+                </div>
+                <div class="rent-item"><a href="{% url 'buysellpage' b.nbone b.slug b.id %}">{{b.title}}</a></div>
+                <div class="rent-item">${{b.price | intcomma}}</div>      
+                <div class="rent-item">{{b.phone}}</div>
+                <div class="rent-item">
+                    {%if b.is_future%}
+                        置顶
+                    {%else%}
+                        {{b.list_date | timesince}}
+                    {%endif%}
+                </div>
+            </div>
+            {%endfor%}
+        {%else%}
+            <div>
+                <h1 class=flex style="margin-top: 200px;">此页面暂时忙碌....请稍后再来....</h1>
+            </div>
+            
+        {%endif%}
+        
+
+        <!-- pagination -->
+        <div class="row">
+          <div class="col-md-12">
+              {%if buysell.has_other_pages %}
+                  <ul class="pagination">
+                      {%if buysell.has_previous%}
+                          <li class="page-item">
+                              <a href="?page={{buysell.previous_page_number}}" class="page-link">&laquo;</a>
+                          </li>
+                      {%else%}
+                          <li class="page-item disabled">
+                              <a class="page-link">&laquo;</a>
+                          </li>
+                      {%endif%}
+
+                      {%for i in buysell.paginator.page_range%}
+                          {%if buysell.number == i%}
+                              <li class="page-item active">
+                                  <a class="page-link">{{i}}</a>
+                              </li>
+                          {%else%}
+                              <li class="page-item">
+                                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                              </li>
+                          {%endif%}
+                      {%endfor%}
+
+                      {%if buysell.has_next%}
+                          <li class="page-item">
+                              <a href="?page={{buysell.next_page_number}}" class="page-link">&raquo;</a>
+                          </li>
+                      {%else%}
+                          <li class="page-item disabled">
+                              <a class="page-link">&raquo;</a>
+                          </li>
+                      {%endif%}                     
+                  </ul>
+              {%endif%}
+          </div>
+      </div>
+
+{%endblock%}
+
+

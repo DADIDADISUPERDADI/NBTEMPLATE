@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+
+{%block kw%}{{rent.nbmain}}租房 {{rent.nbmain}}出租 {{rent.nbmain}} {{rent.title}} {%endblock%}
+{%block desc%}{{rent.description|truncatechars:140}}{%endblock%}
+{%block twcard%}<meta name="twitter:card" content="summary_large_image" />{%endblock%}
+{%block twtitle%}<meta name="twitter:title" content="{{rent.title|slice:60}}" /> {%endblock%}
+{%block twdesc%}<meta name="twitter:description" content="{{rent.description|slice:120}}" />{%endblock%}
+{%block ogsitename%}<meta property="og:site_name" content="爸爸牛B网">{%endblock%}
+{%block ogtitle%}<meta property="og:title" content="{{rent.title|slice:60}}">{%endblock%}
+{%block og:description%}<meta property="og:description" content="{{rent.description|slice:120}}">{%endblock%}
+{%block og:url%}<meta property="og:url" content="{{request.path}}">{%endblock%}
+{%block og:type%}<meta property="og:type" content="article">{%endblock%}
+
+{%block twogimg%}
+    {%if rent.photo_main%}
+        <meta name="twitter:image" content="{{rent.photo_main.url}}" />
+        <meta property="og:image" content="{{rent.photo_main.url}}">
+    {%elif rent.photo_1%}
+        <meta name="twitter:image" content="{{rent.photo_1.url}}" />
+        <meta property="og:image" content="{{rent.photo_1.url}}">
+    {%elif rent.photo_2%}
+        <meta name="twitter:image" content="{{rent.photo_2.url}}" />
+        <meta property="og:image" content="{{rent.photo_2.url}}">
+    {%elif rent.photo_3%}
+        <meta name="twitter:image" content="{{rent.photo_3.url}}" />
+        <meta property="og:image" content="{{rent.photo_3.url}}">
+    {%elif rent.photo_4%}
+        <meta name="twitter:image" content="{{rent.photo_4.url}}" />
+        <meta property="og:image" content="{{rent.photo_4.url}}">
+    {%else%}
+    {%endif%}
+{%endblock%}
+
+
+
+{%block title%}{{rent.title}}{%endblock%}
+
+{%block content%}
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if rent.nbmain|stringformat:"s" == "皇后区" %}
+            <a class="fatie" href="{%url 'queens'%}">返回租房预览</a>
+        {%elif rent.nbmain|stringformat:"s" == "曼哈顿"%}
+            <a class="fatie" href="{%url 'manhattan'%}">返回租房预览</a> 
+        {%elif rent.nbmain|stringformat:"s" == "艾姆赫斯特"%}
+            <a class="fatie" href="{%url 'elmhurst'%}">返回租房预览</a>  
+        {%elif rent.nbmain|stringformat:"s" == "布鲁克林"%}
+            <a class="fatie" href="{%url 'brooklyn'%}">返回租房预览</a> 
+        {%elif rent.nbmain|stringformat:"s" == "纽约租房"%}
+            <a class="fatie" href="{%url 'otherarea'%}">返回租房预览</a> 
+        {%else%}
+            <a class="fatie" href="{%url 'rent'%}">返回租房预览</a>        
+        {%endif%}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+       主题：{{rent.title}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        联系电话：{{rent.phone}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        价格：${{rent.price}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if rent.is_future%}
+            发表时间：置顶 N/A
+        {%else%}
+            发表时间：{{rent.list_date}}
+        {%endif%}
+    </div>
+</div>
+
+<!-- <div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        发布者：{{rent.poster}}
+    </div>
+</div> -->
+
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+            地区：{{rent.nbmain}}   
+    </div>
+</div>
+
+<div class="rentpage-gridtitle" style="min-height: 200px;">
+    <div class="rentpage-gridtitle-item">
+        描述：{{rent.description}}
+    </div>
+</div>
+
+<div class="rentpage-gridtitle">
+    <div>
+        {%if rent.photo_main%}
+            <img class="rentpage-gridimage-item" src="{{rent.photo_main.url}}" alt="主要图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if rent.photo_1%}
+            <img class="rentpage-gridimage-item" src="{{rent.photo_1.url}}" alt="一号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if rent.photo_2%}
+            <img class="rentpage-gridimage-item" src="{{rent.photo_2.url}}" alt="二号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if rent.photo_3%}
+            <img class="rentpage-gridimage-item" src="{{rent.photo_3.url}}" alt="三号图片">
+        {%endif%}
+    </div>
+    <div>
+        {%if rent.photo_4%}
+            <img class="rentpage-gridimage-item" src="{{rent.photo_4.url}}" alt="四号图片">
+        {%endif%}
+    </div>
+</div>
+{%endblock%}
+
+

@@ -1,0 +1,18 @@
+{% load i18n %}
+{% autoescape off %}
+    {% blocktranslate %}
+        <h4>我们收到了您在{{ site_name }}的重置密码要求.</h4>
+    {% endblocktranslate %}
+
+    <h4>{% translate "请前往页面并且重置您的密码:" %}</h4>
+    {% block reset_link %}
+    {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+    {% endblock %}
+
+    <h4>{% translate '您的Username/用户名是:' %} {{ user.get_username }}</h4>
+
+    <h4>{% translate "欢迎支持华人NB网！" %}</h4>
+
+    <h4>{% blocktranslate %}The {{ site_name }} team {% endblocktranslate %}</h4>
+{% endautoescape %}
+

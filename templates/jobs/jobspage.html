@@ -1,0 +1,89 @@
+{%extends 'base.html'%}
+
+{%block kw%}{{jobs.nbtwo}} {{jobs.title}} {%endblock%}
+{%block desc%}{{jobs.description|truncatechars:140}}{%endblock%}
+{%block twcard%}<meta name="twitter:card" content="summary_large_image" />{%endblock%}
+{%block twtitle%}<meta name="twitter:title" content="{{jobs.title|slice:60}}" /> {%endblock%}
+{%block twdesc%}<meta name="twitter:description" content="{{jobs.description|slice:120}}" />{%endblock%}
+{%block ogsitename%}<meta property="og:site_name" content="爸爸牛B网">{%endblock%}
+{%block ogtitle%}<meta property="og:title" content="{{jobs.title|slice:60}}">{%endblock%}
+{%block og:description%}<meta property="og:description" content="{{jobs.description|slice:120}}">{%endblock%}
+{%block og:url%}<meta property="og:url" content="{{request.path}}">{%endblock%}
+{%block og:type%}<meta property="og:type" content="article">{%endblock%}
+
+
+
+{%block title%}{{jobs.title}}{%endblock%}
+
+{%block content%}
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if jobs.nbtwo|stringformat:"s" == "纽约招聘" %}
+            <a class="fatie" href="{%url 'niuyuezhaopin'%}">返回工作预览</a>
+        {%elif jobs.nbtwo|stringformat:"s" == "餐馆奶茶请人"%}
+            <a class="fatie" href="{%url 'canguannaichaqingren'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "实习办公招聘"%}
+            <a class="fatie" href="{%url 'shixibangongzhaopin'%}">返回工作预览</a>  
+        {%elif jobs.nbtwo|stringformat:"s" == "搬家维修装修"%}
+            <a class="fatie" href="{%url 'banjiaweixiuzhuangxiu'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "驾校考车顺风车"%}
+            <a class="fatie" href="{%url 'jiaxiaokaocheshunfengche'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "补习教学培训"%}
+            <a class="fatie" href="{%url 'buxijiaoxuepeixun'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "电脑网页APP"%}
+            <a class="fatie" href="{%url 'diannaowangyeapp'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "按摩美甲理疗"%}
+            <a class="fatie" href="{%url 'anmomeijialiliao'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "保姆家政打扫"%}
+            <a class="fatie" href="{%url 'baomujiazhengdasao'%}">返回工作预览</a> 
+        {%elif jobs.nbtwo|stringformat:"s" == "会计律师医生"%}
+            <a class="fatie" href="{%url 'kuaijilvshiyisheng'%}">返回工作预览</a>
+        {%elif jobs.nbtwo|stringformat:"s" == "其他正职工作"%}
+            <a class="fatie" href="{%url 'qitazhengzhigongzuo'%}">返回工作预览</a>      
+        {%else%}
+            <a class="fatie" href="{%url 'jobs'%}">返回工作预览</a>        
+        {%endif%}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+       主题：{{jobs.title}}
+    </div>
+</div>
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        联系电话：{{jobs.phone}}
+    </div>
+</div>
+
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        {%if jobs.is_future%}
+            发表时间：置顶 N/A
+        {%else%}
+            发表时间：{{jobs.list_date}}
+        {%endif%}
+    </div>
+</div>
+
+<!-- <div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        发布者：{{jobs.poster}}
+    </div>
+</div> -->
+
+<div class="rentpage-gridtitle">
+    <div class="rentpage-gridtitle-item">
+        工作类型：{{jobs.nbtwo}}
+    </div>
+</div>
+
+<div class="rentpage-gridtitle" style="min-height: 200px;">
+    <div class="rentpage-gridtitle-item">
+        描述：{{jobs.description}}
+    </div>
+</div>
+
+{%endblock%}
+
+

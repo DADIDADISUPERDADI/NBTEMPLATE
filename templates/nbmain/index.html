@@ -1,0 +1,145 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block kw%}爸爸牛B, 爸爸牛B网, 爸爸NB网, 租房, 招聘, 找工, 找工作, 出租, 求租, 买房, 卖房, 纽约租房, 纽约找工, 纽约招聘, 纽约买房, 纽约卖房{%endblock%}
+{%block desc%}爸爸牛B, 爸爸牛B网, BABANIUBI, DADDYNIUBI, 爸爸NB网, 租房, 招聘, 找工, 找工作, 出租, 求租, 纽约租房, 纽约找工, 纽约招聘, 纽约买房, 纽约卖房, 纽约找工作, 法拉盛找工, 皇后区找工, 法拉盛招聘, 法拉盛买房, 法拉盛卖房, 雷哥公园, 车位出租, 法拉盛车位, 布碌仑, 八大道, 分类广告, 分类信息
+{%endblock%}
+{%block twcard%}<meta name="twitter:card" content="summary_large_image" />{%endblock%}
+{%block twtitle%}<meta name="twitter:title" content="爸爸牛B网" /> {%endblock%}
+{%block twdesc%}<meta name="twitter:description" content="DADDY IS VERY NIUBI" />{%endblock%}
+{%block ogsitename%}<meta property="og:site_name" content="爸爸牛B网">{%endblock%}
+{%block ogtitle%}<meta property="og:title" content="爸爸牛B网">{%endblock%}
+{%block og:description%}<meta property="og:description" content="DADDY IS VERY NIUBI">{%endblock%}
+{%block og:url%}<meta property="og:url" content="{{request.path}}">{%endblock%}
+{%block og:type%}<meta property="og:type" content="article">{%endblock%}
+{%block twogimg%}
+        <meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{%static 'img/logo.png'%}" />
+        <meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{%static 'img/logo.png'%}">
+{%endblock%}
+
+
+{%block title%}爸爸牛B网{%endblock%}
+
+{%block content%}
+      
+        <div class="index-field-grid">
+          <div></div>
+          <div></div>
+          <!-- <div style="text-align: right;">
+            <h5 style="font-weight: bolder; margin:0;">
+              纽约租房
+            </h5>        
+          </div>  -->
+          <div style="text-align: center;">
+            <h5 style="margin:0; padding:5px;">
+            {%if user.is_authenticated%}
+                <a class='fatie' href="{%url 'addpost'%}">
+                    发布租房广告
+                </a>
+            {%else%}
+                <a class='fatie' href="{%url 'login'%}">
+                    发布租房广告
+                </a>
+            {%endif%}
+            </h5> 
+          </div>  
+        </div>
+
+        <!-- <div class="grid2">
+          <div class="grid2-item">Flushing</div>
+          <div class="grid2-item">Queens</div>
+          <div class="grid2-item">Manhattan</div>
+          <div class="grid2-item">Elmhurst</div>
+          <div class="grid2-item">Brooklyn</div>
+          <div class="grid2-item">Others</div>
+        </div> -->
+
+        <div class="grid3">
+          <a href="{%url 'rent'%}" class="grid-item">法拉盛租房</a>
+          <a href="{%url 'queens'%}" class="grid-item">皇后区租房</a>       
+          <a href="{%url 'manhattan'%}" class="grid-item">曼哈顿租房</a>
+          <a href="{%url 'elmhurst'%}" class="grid-item">艾姆赫斯特租房</a>
+          <a href="{%url 'brooklyn'%}" class="grid-item">布鲁克林租房</a>
+          <a href="{%url 'otherarea'%}" class="grid-item">其他区出租</a>
+        </div>
+          
+        <div class="index-field-grid">
+          <div></div>
+          <div></div>
+          <!-- <div style="text-align: right;">
+            <h5 style="font-weight: bolder; margin:0;">
+              纽约买房
+            </h5>        
+          </div>  -->     
+          <div style="text-align: center;">
+            <h5 style="margin:0; padding:5px;">
+              {%if user.is_authenticated%}
+                <a class='fatie' href="{%url 'addbuysellpost'%}">
+                    发布交易广告
+                </a>
+            {%else%}
+                <a class='fatie' href="{%url 'login'%}">
+                    发布交易广告
+                </a>
+            {%endif%}
+            </h5> 
+          </div>  
+        </div>
+
+        <div class="grid3">  
+          <a href="{%url 'buysell'%}" class="grid-item">法拉盛买房卖房</a>
+          <a href="{%url 'bangongshishangyedianpu'%}" class="grid-item">办公室商业店铺</a>
+          <a href="{%url 'huanghouqumaifangmaifang'%}" class="grid-item">皇后区买房卖房</a>     
+          <a href="{%url 'qitaqumaifangmaifang'%}" class="grid-item">其他区买房卖房</a>
+          <a href="{%url 'maichemaicheershouche'%}" class="grid-item">买车卖车二手车</a>
+          <a href="{%url 'geleiershoujiaoyi'%}" class="grid-item">各类二手交易</a>
+        </div>
+        
+        <div class="index-field-grid">
+          <div></div>
+          <div></div>
+          <!-- <div style="text-align: right;">
+            <h5 style="font-weight: bolder; margin:0;">
+              纽约找工
+            </h5>        
+          </div>  -->
+          <div style="text-align: center;">
+            <h5 style="margin:0; padding:5px;";>
+              {%if user.is_authenticated%}
+                <a class='fatie' href="{%url 'addjobspost'%}">
+                    发布工作广告
+                </a>
+            {%else%}
+                <a class='fatie' href="{%url 'login'%}">
+                    发布工作广告
+                </a>
+            {%endif%}
+            </h5> 
+          </div>  
+        </div>
+
+        <div class="grid4">
+          <a href="{%url 'jobs'%}" class="grid-item">纽约找工</a>
+          <a href="{%url 'niuyuezhaopin'%}" class="grid-item">纽约招聘</a>
+          <a href="{%url 'canguannaichaqingren'%}" class="grid-item">餐馆奶茶请人</a>
+          <a href="{%url 'shixibangongzhaopin'%}" class="grid-item">实习办公招聘</a>
+          <a href="{%url 'banjiaweixiuzhuangxiu'%}" class="grid-item">搬家维修装修</a>
+          <a href="{%url 'jiaxiaokaocheshunfengche'%}" class="grid-item">驾校考车顺风车</a>
+          <a href="{%url 'buxijiaoxuepeixun'%}" class="grid-item">补习教学培训</a>
+          <a href="{%url 'diannaowangyeapp'%}" class="grid-item">电脑网页APP</a>
+          <a href="{%url 'anmomeijialiliao'%}" class="grid-item">按摩美甲理疗</a>
+          <a href="{%url 'baomujiazhengdasao'%}" class="grid-item">保姆家政打扫</a>
+          <a href="{%url 'kuaijilvshiyisheng'%}" class="grid-item">会计律师医生</a>
+          <a href="{%url 'qitazhengzhigongzuo'%}" class="grid-item">其他正职工作</a>
+        </div>
+
+
+        <!-- <div class="ggs">
+          <div class="ggs-item">
+              广告/商业合作请联系 dadidadisuperdadi@gmail.com
+          </div>
+          <div class="ggs-item">
+            请遵守法律，如遇到违法行为，请尽快联系我们
+          </div>
+        </div> -->
+{% endblock %}

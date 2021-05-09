@@ -1,0 +1,11 @@
+<canvas id="myCanvas"></canvas>
+<label for="capinput"><h4>请在下框输入答案</h4></label>
+<input class="form-control" type="text" name="capinput" placeholder="请在此框输入图片中的计算结果" required>
+
+<script>
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.font = "30px Arial";
+  ctx.strokeStyle="#ffffff"
+  ctx.strokeText("{{cap}}", 50, 80);
+</script>

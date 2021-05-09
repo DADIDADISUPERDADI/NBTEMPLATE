@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block title%}发布成功{%endblock%}
+
+{%block content%}
+{%if user.is_authenticated%}
+    <div>
+        <h1 class=flex style="margin-top: 200px;">您的帖子已提交，请待我们核审</h1>
+        <a href="{%url 'dashboard'%}"><button style="margin:100px 0;" class="btn btn-dark btn-lg btn-block">查看您的帖子们</button></a>
+        <a href="{%url 'index'%}"><button style="margin-bottom:100px;" class="btn btn-dark btn-lg btn-block">返回首页</button></a>
+    </div>
+{%else%}
+
+{%endif%}
+{%endblock%}
